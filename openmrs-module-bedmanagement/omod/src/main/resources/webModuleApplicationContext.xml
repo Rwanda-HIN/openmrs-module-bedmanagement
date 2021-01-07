@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- Beans to add to the current Application context definition -->
+
+<beans>
+
+	<bean id="mohappointmentUrlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<ref bean="localeChangeInterceptor" />
+			</list>
+		</property>
+		<property name="order">
+			<value>2</value>
+		</property>
+		<property name="mappings">
+			<props>
+				<prop key="module/bedmanagement/wards.list">wardsListController</prop>
+				<prop key="module/bedmanagement/beds.list">bedsListController</prop>
+				<prop key="module/bedmanagement/bedOccupancy.list">bedAdmissionManagementController</prop>								
+				
+				<prop key="module/bedmanagement/bedAdmission.form">bedAdmissionFormController</prop>
+								
+				<prop key="module/bedmanagement/bedOccupancy.form">bedOccupancyReportController</prop>
+				 
+						
+
+			</props>
+		</property>
+	</bean>
+
+	<!-- Controllers -->
+
+	<bean id="wardsListController"
+		class="org.openmrs.module.bedmanagement.web.controller.WardsListController">
+		<property name="viewName">
+			<value>/module/bedmanagement/wardsList</value>
+		</property>
+	</bean>
+
+	<bean id="bedsListController"
+		class="org.openmrs.module.bedmanagement.web.controller.BedsListController">
+		<property name="viewName">
+			<value>/module/bedmanagement/bedsList</value>
+		</property>
+	</bean>
+	
+	<bean id="bedAdmissionManagementController"
+		class="org.openmrs.module.bedmanagement.web.controller.BedAdmissionManagementController">
+		<property name="viewName">
+			<value>/module/bedmanagement/bedOccupancyPerWard</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="bedAdmissionFormController"
+		class="org.openmrs.module.bedmanagement.web.controller.BedAdmissionFormController">
+		<property name="viewName">
+			<value>/module/bedmanagement/bedAdmissionForm</value>
+		</property>
+	</bean>	
+		
+	<bean id="bedOccupancyReportController"
+		class="org.openmrs.module.bedmanagement.web.controller.BedOccupancyReportController">
+		<property name="viewName">
+			<value>/module/bedmanagement/bedOccupancyStatistic</value>
+		</property>
+	</bean>		
+   
+	<!-- /Controllers -->
+	<!-- <bean class="org.openmrs.module.mohappointment.utils.ContextProvider" 
+		/> -->
+</beans>
